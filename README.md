@@ -12,7 +12,7 @@ sudo nixos-rebuild switch
 
 Clone this configuration:
 ```bash
-nix shell nixpkgs#git
+nix-shell -p git
 git clone https://github.com/Berberer/wsl-nixos-config /tmp/wsl-nixos-config
 ```
 
