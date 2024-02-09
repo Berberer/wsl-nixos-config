@@ -1,0 +1,39 @@
+# NixOS Configuration for WSL
+
+## Get Started
+Install the latest [NixOS WSL release](https://github.com/nix-community/NixOS-WSL).
+
+Inital updates:
+```bash
+sudo nix-channel --add https://nixos.org/channels/nixos-23.11 nixos
+sudo nix-channel --update
+sudo nixos-rebuild switch
+```
+
+Clone this configuration:
+```bash
+nix shell nixpkgs#git
+git clone https://github.com/Berberer/wsl-nixos-config /tmp/wsl-nixos-config
+```
+
+Adjust to the cloned configuration. Afterwards, run the following command to apply the configuration:
+```bash
+sudo nixos-rebuild switch --flake /tmp/wsl-nixos-config#wsl-nixos
+```
+
+Shutdown and restart the WSL and enter it again. Run the following commands:
+```bash
+mv /tmp/wsl-nixos-config ~/wsl-nixos-config
+cd ~/wsl-nixos-config
+home-manager switch --flake .#lukas@wsl-nixos
+```
+
+## Additional Commands
+Once the initial installation is done, most interactions can be done via `just` commands inside of `~/wsl-nixos-config`:
+| Command              | Description                                                                 |
+|----------------------|-----------------------------------------------------------------------------|
+| `just update`        | Update the lockfile of this configuration flake                             |
+| `just fmt`           | Format the source files of this configuration flake                         |
+| `just check`         | Check the source files of this configuarion flake for error-free evaluation |
+| `just switch-system` | Apply this configuration flake to the current NixOS system                  |
+| `just switch-home`   | Apply this configuration flake to your user                                 |
