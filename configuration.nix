@@ -53,12 +53,21 @@
     enable = true;
     defaultUser = "lukas";
     nativeSystemd = true;
+    interop.register = true;
 
     wslConf = {
       automount.root = "/mnt";
       user.default = "lukas";
-      interop.appendWindowsPath = false;
     };
+
+    extraBin = [
+      { src = "${pkgs.coreutils}/bin/dirname"; }
+      { src = "${pkgs.coreutils}/bin/readlink"; }
+      { src = "${pkgs.coreutils}/bin/uname"; }
+      { src = "${pkgs.coreutils}/bin/cat"; }
+      { src = "${pkgs.gnused}/bin/sed"; }
+      { src = "${pkgs.which}/bin/which"; }
+    ];
   };
 
   users.mutableUsers = false;
@@ -86,6 +95,12 @@
     };
 
     enableEmergencyMode = false;
+  };
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = [ pkgs.stdenv.cc.cc ];
+    package = inputs.nix-ld-rs.packages.${pkgs.system}.nix-ld-rs;
   };
 
   system.stateVersion = "23.11";

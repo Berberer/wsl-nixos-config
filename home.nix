@@ -5,6 +5,8 @@
 let
   stable-packages = with pkgs; [
     git
+    gnused
+    which
     htop
     tree
     unzip
