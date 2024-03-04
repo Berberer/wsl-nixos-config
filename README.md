@@ -20,15 +20,18 @@ Adjust to the cloned configuration. Afterwards, run the following command to app
 nix-shell -p git --run "sudo nixos-rebuild switch --flake /tmp/wsl-nixos-config#wsl-nixos"
 ```
 
+Shutdown and restart the WSL and enter it again.
+
 Create the `age` key at the following location:
 ```bash
 ~/.config/sops/age/keys.txt
 ```
 
-Shutdown and restart the WSL and enter it again. Run the following commands:
+Run the following commands:
 ```bash
 mv /tmp/wsl-nixos-config ~/wsl-nixos-config
 cd ~/wsl-nixos-config
+sudo nixos-rebuild switch --flake .#wsl-nixos
 home-manager switch --flake .#lukas@wsl-nixos
 ```
 
