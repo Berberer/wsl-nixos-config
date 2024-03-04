@@ -103,5 +103,25 @@
     package = inputs.nix-ld-rs.packages.${pkgs.system}.nix-ld-rs;
   };
 
+  sops = {
+    age.keyFile = "/home/lukas/.config/sops/age/keys.txt";
+    defaultSopsFile = ./secrets/secrets.yaml;
+
+    secrets = {
+      id_rsa = {
+        mode = "0600";
+        owner = "lukas";
+        group = "users";
+        path = "/home/lukas/.ssh/id_rsa";
+      };
+      id_rsa_pub = {
+        mode = "0644";
+        owner = "lukas";
+        group = "users";
+        path = "/home/lukas/.ssh/id_rsa.pub";
+      };
+    };
+  };
+
   system.stateVersion = "23.11";
 }

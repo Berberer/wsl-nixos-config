@@ -21,3 +21,7 @@ switch-system: fmt check
 # Apply this configuration flake to your user
 switch-home: fmt check
   home-manager switch --flake .#lukas@wsl-nixos
+
+# Opens the sops secret file in the default console editor
+edit-secrets:
+  nix-shell -p sops --run "sops secrets/secrets.yaml"

@@ -12,6 +12,9 @@
 
     nix-ld-rs.url = "github:nix-community/nix-ld-rs";
     nix-ld-rs.inputs.nixpkgs.follows = "nixpkgs";
+
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -19,6 +22,7 @@
     , nixpkgs
     , home-manager
     , nixos-wsl
+    , sops-nix
     , ...
     } @ inputs:
     let
@@ -33,6 +37,7 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             nixos-wsl.nixosModules.wsl
+            sops-nix.nixosModules.sops
             ./configuration.nix
           ];
         };

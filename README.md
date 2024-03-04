@@ -12,13 +12,17 @@ sudo nixos-rebuild switch
 
 Clone this configuration:
 ```bash
-nix-shell -p git
-git clone https://github.com/Berberer/wsl-nixos-config /tmp/wsl-nixos-config
+nix-shell -p git --run "git clone https://github.com/Berberer/wsl-nixos-config /tmp/wsl-nixos-config"
 ```
 
 Adjust to the cloned configuration. Afterwards, run the following command to apply the configuration:
 ```bash
-sudo nixos-rebuild switch --flake /tmp/wsl-nixos-config#wsl-nixos
+nix-shell -p git --run "sudo nixos-rebuild switch --flake /tmp/wsl-nixos-config#wsl-nixos"
+```
+
+Create the `age` key at the following location:
+```bash
+~/.config/sops/age/keys.txt
 ```
 
 Shutdown and restart the WSL and enter it again. Run the following commands:
@@ -37,3 +41,4 @@ Once the initial installation is done, most interactions can be done via `just` 
 | `just check`         | Check the source files of this configuarion flake for error-free evaluation |
 | `just switch-system` | Apply this configuration flake to the current NixOS system                  |
 | `just switch-home`   | Apply this configuration flake to your user                                 |
+| `just edit-secrets`  | Opens the sops secret file in the default console editor                    |
