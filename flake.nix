@@ -48,6 +48,7 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
+            sops-nix.homeManagerModules.sops
             ./home.nix
           ];
         };

@@ -20,6 +20,24 @@ let
 in
 {
 
+  sops = {
+    age.keyFile = "/home/lukas/.config/sops/age/keys.txt";
+    defaultSopsFile = ./secrets/secrets.yaml;
+
+    secrets = {
+      id_rsa = {
+        path = "/home/lukas/.ssh/id_rsa";
+      };
+      id_rsa_pub = {
+        path = "/home/lukas/.ssh/id_rsa.pub";
+      };
+    };
+  };
+
+  home.activation.setupEtc = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    /run/current-system/sw/bin/systemctl start --user sops-nix.service
+  '';
+
   home = {
     username = "lukas";
     homeDirectory = "/home/lukas";
@@ -35,6 +53,10 @@ in
     home-manager.enable = true;
 
     htop.enable = true;
+
+    ssh = {
+      enable = true;
+    };
 
     readline = {
       enable = true;
