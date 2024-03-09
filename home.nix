@@ -16,6 +16,15 @@ let
     wget
     statix
     wsl-open
+    clang
+
+    (fenix.complete.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+    ])
   ];
 in
 {

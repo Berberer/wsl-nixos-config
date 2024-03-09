@@ -15,6 +15,9 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    fenix.url = "github:nix-community/fenix";
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -23,17 +26,17 @@
     , home-manager
     , nixos-wsl
     , sops-nix
+    , fenix
     , ...
     } @ inputs:
     let
       inherit (self) outputs;
+      system = "x86_64-linux";
     in
     {
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
-
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
       nixosConfigurations = {
         wsl-nixos = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           specialArgs = { inherit inputs outputs; };
           modules = [
             nixos-wsl.nixosModules.wsl
@@ -45,7 +48,7 @@
 
       homeConfigurations = {
         "lukas@wsl-nixos" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = nixpkgs.legacyPackages.${system}.extend fenix.overlays.default;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             sops-nix.homeManagerModules.sops
