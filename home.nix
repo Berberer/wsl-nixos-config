@@ -17,6 +17,8 @@ let
     statix
     wsl-open
     clang
+    python3
+    poetry
 
     (fenix.complete.withComponents [
       "cargo"
@@ -54,6 +56,13 @@ in
     sessionVariables.EDITOR = "nano";
 
     packages = stable-packages;
+
+    file = {
+      ".config/pypoetry/config.toml".text = ''
+        virtualenvs.create = true
+        virtualenvs.in-project = true
+      '';
+    };
 
     stateVersion = "23.11";
   };
