@@ -1,9 +1,17 @@
-{ inputs
-, lib
-, config
-, pkgs
+{ pkgs
 , ...
-}: {
+}:
+let
+  stable-packages = with pkgs; [
+    git
+    home-manager
+  ];
+
+  unstable-packages = with pkgs.unstable ; [
+    nix-ld-rs
+  ];
+in
+{
 
   nixpkgs = {
     hostPlatform = "x86_64-linux";
@@ -21,10 +29,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    git
-    home-manager
-  ];
+  environment.systemPackages = stable-packages ++ unstable-packages;
 
   virtualisation.docker = {
     enable = true;
@@ -96,7 +101,7 @@
   programs.nix-ld = {
     enable = true;
     libraries = [ pkgs.stdenv.cc.cc ];
-    package = inputs.nix-ld-rs.packages.${pkgs.system}.nix-ld-rs;
+    package = pkgs.unstable.nix-ld-rs;
   };
 
   system.stateVersion = "23.11";

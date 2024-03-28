@@ -28,6 +28,8 @@ let
       "rustfmt"
     ])
   ];
+
+  unstable-packages = with pkgs.unstable ; [ ];
 in
 {
 
@@ -55,7 +57,7 @@ in
 
     sessionVariables.EDITOR = "nano";
 
-    packages = stable-packages;
+    packages = stable-packages ++ unstable-packages;
 
     file = {
       ".config/pypoetry/config.toml".text = ''
