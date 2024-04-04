@@ -1,5 +1,8 @@
 # NixOS Configuration for WSL
 
+## Prerequisites
+* Download a [Nerd Font](https://www.nerdfonts.com/font-downloads) and cofigure it in your terminal emulator.
+
 ## Get Started
 Install the latest [NixOS WSL release](https://github.com/nix-community/NixOS-WSL).
 

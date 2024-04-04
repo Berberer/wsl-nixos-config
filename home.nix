@@ -29,7 +29,9 @@ let
     ])
   ];
 
-  unstable-packages = with pkgs.unstable ; [ ];
+  unstable-packages = with pkgs.unstable ; [
+    oh-my-posh
+  ];
 in
 {
 
@@ -83,6 +85,13 @@ in
       variables = {
         completion-ignore-case = true;
       };
+    };
+
+    bash = {
+      enable = true;
+      bashrcExtra = ''
+        eval "$(oh-my-posh init bash --config ${pkgs.unstable.oh-my-posh}/share/oh-my-posh/themes/emodipt-extend.omp.json)"
+      '';
     };
 
     git = {
