@@ -4,29 +4,12 @@
 }:
 let
   stable-packages = with pkgs; [
-    git
-    gnused
-    which
-    htop
     tree
     unzip
     zip
-    nano
     just
-    wget
     statix
     wsl-open
-    clang
-    python3
-    poetry
-
-    (fenix.complete.withComponents [
-      "cargo"
-      "clippy"
-      "rust-src"
-      "rustc"
-      "rustfmt"
-    ])
   ];
 
   unstable-packages = with pkgs.unstable ; [

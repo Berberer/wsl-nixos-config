@@ -4,6 +4,10 @@
 let
   stable-packages = with pkgs; [
     git
+    wget
+    nano
+    gnused
+    which
     home-manager
   ];
 

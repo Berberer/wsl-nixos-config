@@ -13,9 +13,6 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    fenix.url = "github:nix-community/fenix";
-    fenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -25,7 +22,6 @@
     , home-manager
     , nixos-wsl
     , sops-nix
-    , fenix
     , ...
     } @ inputs:
     let
@@ -39,7 +35,6 @@
           allowUnfreePredicate = _: true;
         };
         overlays = [
-          fenix.overlays.default
           (_final: prev: {
             unstable = import nixpkgs-unstable {
               inherit (prev) system;
