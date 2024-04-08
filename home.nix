@@ -29,6 +29,9 @@ in
       id_rsa_pub = {
         path = "/home/lukas/.ssh/id_rsa.pub";
       };
+      nix_conf = {
+        path = "/home/lukas/.config/nix/nix.conf";
+      };
     };
   };
 
@@ -43,13 +46,6 @@ in
     sessionVariables.EDITOR = "nano";
 
     packages = stable-packages ++ unstable-packages;
-
-    file = {
-      ".config/pypoetry/config.toml".text = ''
-        virtualenvs.create = true
-        virtualenvs.in-project = true
-      '';
-    };
 
     stateVersion = "23.11";
   };
