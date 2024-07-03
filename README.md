@@ -8,7 +8,7 @@ Install the latest [NixOS WSL release](https://github.com/nix-community/NixOS-WS
 
 Inital updates:
 ```bash
-sudo nix-channel --add https://nixos.org/channels/nixos-23.11 nixos
+sudo nix-channel --add https://nixos.org/channels/nixos-24.05 nixos
 sudo nix-channel --update
 sudo nixos-rebuild switch
 ```
