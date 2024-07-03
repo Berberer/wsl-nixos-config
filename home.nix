@@ -12,9 +12,7 @@ let
     wsl-open
   ];
 
-  unstable-packages = with pkgs.unstable ; [
-    oh-my-posh
-  ];
+  unstable-packages = with pkgs.unstable ; [ ];
 in
 {
 
@@ -68,9 +66,39 @@ in
 
     bash = {
       enable = true;
-      bashrcExtra = ''
-        eval "$(oh-my-posh init bash --config ${pkgs.unstable.oh-my-posh}/share/oh-my-posh/themes/emodipt-extend.omp.json)"
-      '';
+    };
+
+    starship = {
+      enable = true;
+      settings = {
+        add_newline = true;
+
+        directory = {
+          style = "bright-blue";
+          home_symbol = "⌂";
+          truncation_length = 3;
+          truncation_symbol = "…/";
+        };
+
+        character = {
+          success_symbol = "[➜](bold purple)";
+          error_symbol = "[⊘](bold red)";
+        };
+
+        git_branch = {
+          style = "bold yellow";
+        };
+
+        git_status = {
+          style = "bold yellow";
+          diverged = " ⇕⇡$ahead_count⇣$behind_count ";
+          ahead = " ⇡$count ";
+          behind = " ⇣$count ";
+          staged = " ➤ $count ";
+          untracked = " ?$count ";
+          modified = " ✎ $count ";
+        };
+      };
     };
 
     direnv = {
