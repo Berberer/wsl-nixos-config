@@ -75,14 +75,19 @@ in
 
         directory = {
           style = "bright-blue";
-          home_symbol = "⌂";
+          home_symbol = "";
           truncation_length = 3;
           truncation_symbol = "…/";
         };
 
+        os = {
+          disabled = false;
+          symbols.NixOS = " ";
+        };
+
         character = {
-          success_symbol = "[➜](bold purple)";
-          error_symbol = "[⊘](bold red)";
+          success_symbol = "[](bold white)";
+          error_symbol = "[](bold red)";
         };
 
         git_branch = {
@@ -94,9 +99,12 @@ in
           diverged = " ⇕⇡$ahead_count⇣$behind_count ";
           ahead = " ⇡$count ";
           behind = " ⇣$count ";
-          staged = " ➤ $count ";
-          untracked = " ?$count ";
-          modified = " ✎ $count ";
+          staged = " 󱝿 $count ";
+          untracked = " 󰎜 $count ";
+          modified = " 󱞁 $count ";
+          conflicted = " 󱝽 $count ";
+          deleted = " 󱙑 $count";
+          stashed = "  $count ";
         };
       };
     };
