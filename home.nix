@@ -72,22 +72,50 @@ in
       enable = true;
       settings = {
         add_newline = true;
+        palette = "default";
+        fill.symbol = " ";
+
+        format = ''
+          ╭─[](fg:background_blue)$os$username$hostname$localip$directory[](fg:background_blue) $git_branch$git_commit$git_state$git_metrics$git_status$docker_context$nix_shell$direnv$env_var$sudo$container$shell$fill$status$character$cmd_duration$time
+          ╰╴[❯ ](fg:white)
+        '';
+
+        os = {
+          disabled = false;
+          style = "fg:white bg:background_blue";
+          format = "[$symbol ]($style)";
+          symbols.NixOS = " ";
+        };
+
+        username = {
+          style = "fg:white bg:background_blue";
+        };
+
+        hostname = {
+          style = "fg:white bg:background_blue";
+        };
+
+        localip = {
+          style = "fg:white bg:background_blue";
+        };
 
         directory = {
-          style = "bright-blue";
-          home_symbol = "";
+          style = "fg:white bg:background_blue";
+          read_only_style = "fg:white bg:background_blue";
+          format = "[$path]($style)[$read_only]($read_only_style)";
+          home_symbol = " ";
+          read_only = " ";
           truncation_length = 3;
           truncation_symbol = "…/";
         };
 
-        os = {
-          disabled = false;
-          symbols.NixOS = " ";
+        character = {
+          success_symbol = "[](bold green)";
+          error_symbol = "[](bold red)";
         };
 
-        character = {
-          success_symbol = "[](bold white)";
-          error_symbol = "[](bold red)";
+        time = {
+          disabled = false;
         };
 
         git_branch = {
@@ -105,6 +133,10 @@ in
           conflicted = " 󱝽 $count ";
           deleted = " 󱙑 $count";
           stashed = "  $count ";
+        };
+
+        palettes.default = {
+          background_blue = "#00497a";
         };
       };
     };
