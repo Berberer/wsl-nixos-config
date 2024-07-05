@@ -88,7 +88,9 @@ in
         };
 
         username = {
-          style = "fg:white bg:background_blue";
+          style_root = "fg:red bg:background_blue";
+          style_user = "fg:white bg:background_blue";
+          format = "[$user]($style)[ in ](fg:white bg:background_blue)";
         };
 
         hostname = {
