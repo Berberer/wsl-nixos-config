@@ -113,29 +113,29 @@ in
 
         git_branch = {
           style = "bold fg:white bg:background_orange";
-          format = "on [](fg:background_orange)[$symbol$branch(:$remote_branch) ]($style)";
+          format = "on [](fg:background_orange)[$symbol$branch(:$remote_branch)]($style)";
         };
 
         git_commit = {
           style = "bold fg:white bg:background_orange";
-          format = "[\($hash$tag\) ]($style)";
+          format = "( [\($hash$tag\)]($style))";
         };
 
         git_state = {
           style = "bold fg:white bg:background_orange";
-          format = "\([$state( $progress_current/$progress_total) ]($style)\)";
+          format = "( \([$state( $progress_current/$progress_total)]($style)\))";
         };
 
         git_metrics = {
           disabled = false;
           added_style = "bold fg:green bg:background_orange";
           deleted_style = "bold fg:red bg:background_orange";
-          format = "[([+$added]($added_style) [-$deleted]($deleted_style) )](bg:background_orange)";
+          format = "[( [+$added]($added_style) [-$deleted]($deleted_style))](bg:background_orange)";
         };
 
         git_status = {
           style = "bold fg:white bg:background_orange";
-          format = "[(\\[$all_status$ahead_behind\\])]($style)[](fg:background_orange)";
+          format = "[( \\[$all_status$ahead_behind\\])]($style)[](fg:background_orange)";
           diverged = " ⇕⇡$ahead_count⇣$behind_count ";
           ahead = " ⇡$count ";
           behind = " ⇣$count ";
