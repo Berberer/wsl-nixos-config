@@ -6,8 +6,6 @@ let
     git
     wget
     nano
-    gnused
-    which
     home-manager
   ];
 
@@ -16,6 +14,10 @@ let
   ];
 in
 {
+
+  imports = [
+    ./modules/system/wsl.nix
+  ];
 
   nixpkgs = {
     hostPlatform = "x86_64-linux";
@@ -53,27 +55,6 @@ in
   };
 
   networking.hostName = "wsl-nixos";
-
-  wsl = {
-    enable = true;
-    defaultUser = "lukas";
-    nativeSystemd = true;
-    interop.register = true;
-
-    wslConf = {
-      automount.root = "/mnt";
-      user.default = "lukas";
-    };
-
-    extraBin = [
-      { src = "${pkgs.coreutils}/bin/dirname"; }
-      { src = "${pkgs.coreutils}/bin/readlink"; }
-      { src = "${pkgs.coreutils}/bin/uname"; }
-      { src = "${pkgs.coreutils}/bin/cat"; }
-      { src = "${pkgs.gnused}/bin/sed"; }
-      { src = "${pkgs.which}/bin/which"; }
-    ];
-  };
 
   users.mutableUsers = false;
   users.users.lukas = {
