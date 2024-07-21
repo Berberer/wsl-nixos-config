@@ -52,12 +52,12 @@
 
       git_commit = {
         style = "bold fg:white bg:background_orange";
-        format = "( [\($hash$tag\)]($style))";
+        format = "( [\\($hash$tag\\)]($style))";
       };
 
       git_state = {
         style = "bold fg:white bg:background_orange";
-        format = "( \([$state( $progress_current/$progress_total)]($style)\))";
+        format = "( \\([$state( $progress_current/$progress_total)]($style)\\))";
       };
 
       git_metrics = {
@@ -81,6 +81,12 @@
         stashed = "  $count ";
       };
 
+      nix_shell = {
+        format = " in [](fg:background_green)[$symbol $state (\\($name\\))]($style)[](fg:background_green) ";
+        style = "bold fg:white bg:background_green";
+        symbol = " ";
+      };
+
       character = {
         success_symbol = "[](bold green)";
         error_symbol = "[](bold red)";
@@ -93,6 +99,7 @@
       palettes.default = {
         background_blue = "#00497a";
         background_orange = "#b37014";
+        background_green = "#7cde9d";
       };
     };
   };
