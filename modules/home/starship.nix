@@ -52,12 +52,12 @@
 
       git_commit = {
         style = "bold fg:white bg:background_orange";
-        format = "( [\\($hash$tag\\)]($style))";
+        format = "[( \\($hash$tag\\))]($style)";
       };
 
       git_state = {
         style = "bold fg:white bg:background_orange";
-        format = "( \\([$state( $progress_current/$progress_total)]($style)\\))";
+        format = "[( \\($state( $progress_current/$progress_total)\\))]($style)";
       };
 
       git_metrics = {
