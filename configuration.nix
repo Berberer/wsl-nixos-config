@@ -85,7 +85,6 @@ in
 
   programs.nix-ld = {
     enable = true;
-    libraries = [ pkgs.stdenv.cc.cc ];
     package = pkgs.unstable.nix-ld-rs;
   };
 

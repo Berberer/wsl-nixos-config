@@ -54,9 +54,11 @@ in
 
     direnv = {
       enable = true;
-      enableBashIntegration = true; # see note on other shells below
+      enableBashIntegration = true;
       nix-direnv.enable = true;
     };
   };
+
+  services.vscode-server.enable = true;
 
 }

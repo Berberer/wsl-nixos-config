@@ -12,12 +12,6 @@
       automount.root = "/mnt";
       user.default = "lukas";
     };
-
-    extraBin = [
-      { src = "${pkgs.coreutils}/bin/dirname"; }
-      { src = "${pkgs.coreutils}/bin/readlink"; }
-      { src = "${pkgs.coreutils}/bin/uname"; }
-    ];
   };
 
 }

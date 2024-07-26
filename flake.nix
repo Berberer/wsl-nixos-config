@@ -13,6 +13,9 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
+    vscode-server.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -22,6 +25,7 @@
     , home-manager
     , nixos-wsl
     , sops-nix
+    , vscode-server
     , ...
     } @ inputs:
     let
@@ -46,6 +50,7 @@
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
+
       nixosConfigurations = {
         wsl-nixos = nixpkgs.lib.nixosSystem {
           pkgs = nixpkgsConfig;
@@ -64,6 +69,7 @@
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             sops-nix.homeManagerModules.sops
+            vscode-server.nixosModules.home
             ./home.nix
           ];
         };
