@@ -40,7 +40,7 @@
         read_only_style = "fg:white bg:background_blue";
         format = "[$path]($style)[$read_only]($read_only_style)";
         home_symbol = " ";
-        read_only = " ";
+        read_only = "  ";
         truncation_length = 3;
         truncation_symbol = "…/";
       };
