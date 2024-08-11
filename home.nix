@@ -11,7 +11,15 @@ let
     wsl-open
   ];
 
-  unstable-packages = with pkgs.unstable ; [ ];
+  unstable-packages = with pkgs.unstable ; [
+    devenv
+
+    jetbrains.idea-ultimate
+    jetbrains.rust-rover
+    jetbrains.pycharm-professional
+    jetbrains.webstorm
+  ];
+
 in
 {
 
