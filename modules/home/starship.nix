@@ -6,11 +6,12 @@
     enable = true;
     settings = {
       add_newline = true;
+      command_timeout = 5000;
       palette = "default";
       fill.symbol = " ";
 
       format = ''
-        ╭─[](fg:background_blue)$os$username$hostname$localip$directory[](fg:background_blue) $git_branch$git_commit$git_state$git_metrics$git_status$docker_context$nix_shell$direnv$env_var$sudo$container$shell$fill$status$character$cmd_duration$time
+        ╭─[](fg:background_blue)$os$username$hostname$localip$directory[](fg:background_blue)$git_branch$git_commit$git_state$git_metrics$git_status$docker_context$nix_shell$direnv$env_var$sudo$container$shell$fill$status$character$cmd_duration$time
         ╰╴[❯ ](fg:white)
       '';
 
@@ -47,7 +48,7 @@
 
       git_branch = {
         style = "bold fg:white bg:background_orange";
-        format = "on [](fg:background_orange)[$symbol$branch(:$remote_branch)]($style)";
+        format = " on [](fg:background_orange)[$symbol$branch(:$remote_branch)]($style)";
       };
 
       git_commit = {
@@ -82,14 +83,21 @@
       };
 
       nix_shell = {
-        format = " in [](fg:background_green)[$symbol $state (\\($name\\))]($style)[](fg:background_green) ";
         style = "bold fg:white bg:background_green";
+        format = " in [](fg:background_green)[$symbol $state (\\($name\\))]($style)[](fg:background_green)";
         symbol = " ";
       };
 
+      direnv = {
+        disabled = false;
+        style = "bold fg:white bg:background_green";
+        format = " in [](fg:background_green)[$symbol $loaded/$allowed]($style)[](fg:background_green)";
+        symbol = "󱁿 ";
+      };
+
       character = {
-        success_symbol = "[](bold green)";
-        error_symbol = "[](bold red)";
+        success_symbol = "[ ](bold green)";
+        error_symbol = "[ ](bold red)";
       };
 
       time = {
@@ -97,9 +105,11 @@
       };
 
       palettes.default = {
-        background_blue = "#00497a";
-        background_orange = "#b37014";
-        background_green = "#7cde9d";
+        background_blue = "#1c71d9";
+        background_orange = "#f49015";
+        background_green = "#5cd664";
+        background_pink = "#d65cd0";
+        background_red = "#8d162a";
       };
     };
   };
