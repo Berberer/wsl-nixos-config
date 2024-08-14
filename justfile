@@ -16,7 +16,7 @@ check:
 
 # Apply this configuration flake to the current NixOS system
 switch-system: fmt check
-  sudo nixos-rebuild switch --flake .#wsl-nixos
+  nixos-rebuild switch --use-remote-sudo --flake .#wsl-nixos
 
 # Apply this configuration flake to your user
 switch-home: fmt check
