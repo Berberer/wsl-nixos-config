@@ -20,7 +20,7 @@ nix-shell -p git --run "git clone https://github.com/Berberer/wsl-nixos-config /
 
 Adjust to the cloned configuration. Afterwards, run the following command to apply the configuration:
 ```bash
-nix-shell -p git --run "sudo nixos-rebuild switch --flake /tmp/wsl-nixos-config#wsl-nixos"
+nix-shell -p git --run "sudo nixos-rebuild boot --flake /tmp/wsl-nixos-config#wsl-nixos"
 ```
 
 Shutdown and restart the WSL and enter it again.
