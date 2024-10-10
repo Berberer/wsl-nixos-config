@@ -1,4 +1,5 @@
-{ pkgs
+{ inputs
+, pkgs
 , ...
 }:
 let
@@ -24,6 +25,9 @@ in
 {
 
   imports = [
+    inputs.sops-nix.homeManagerModules.sops
+    inputs.vscode-server.nixosModules.home
+
     ./modules/home/sops.nix
     ./modules/home/git.nix
     ./modules/home/starship.nix
