@@ -6,12 +6,9 @@ let
     git
     wget
     nano
-    home-manager
   ];
 
-  unstable-packages = with pkgs.unstable ; [
-    nix-ld-rs
-  ];
+  unstable-packages = with pkgs.unstable ; [ ];
 in
 {
 
@@ -87,10 +84,7 @@ in
     enableEmergencyMode = false;
   };
 
-  programs.nix-ld = {
-    enable = true;
-    package = pkgs.unstable.nix-ld-rs;
-  };
+  programs.nix-ld.enable = true;
 
   system.stateVersion = "23.11";
 }
