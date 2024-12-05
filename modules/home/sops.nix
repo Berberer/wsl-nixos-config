@@ -1,6 +1,10 @@
-{ config
+{ inputs
 , ...
 }: {
+
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
 
   sops = {
     age.keyFile = "/home/lukas/.config/sops/age/keys.txt";
@@ -13,14 +17,10 @@
       id_rsa_pub = {
         path = "/home/lukas/.ssh/id_rsa.pub";
       };
-      nix_conf = {
-        path = "/home/lukas/.config/nix/nix.conf";
-      };
+      nix_conf_include_access_tokens = { };
     };
   };
 
-  home.activation.setupEtc = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    /run/current-system/sw/bin/systemctl start --user sops-nix.service
-  '';
+  systemd.user.services.mbsync.Unit.After = [ "sops-nix.service" ];
 
 }

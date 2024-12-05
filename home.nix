@@ -1,4 +1,5 @@
 { inputs
+, config
 , pkgs
 , ...
 }:
@@ -25,7 +26,6 @@ in
 {
 
   imports = [
-    inputs.sops-nix.homeManagerModules.sops
     inputs.vscode-server.nixosModules.home
 
     ./modules/home/sops.nix
@@ -42,6 +42,14 @@ in
     packages = stable-packages ++ unstable-packages;
 
     stateVersion = "23.11";
+  };
+
+  nix = {
+    package = pkgs.nix;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      !include ${config.sops.secrets.nix_conf_include_access_tokens.path}
+    '';
   };
 
   programs = {
